@@ -2,7 +2,7 @@
 # Use build context ../ !!!!
 #
 
-FROM arm32v6/php:7-apache
+FROM armhf/php:7.0-apache
 
 WORKDIR /var/www/html/
 
