@@ -9,10 +9,16 @@ env:
   - DOCKER_COMPOSE_VERSION=1.21.2
 
 before_install:
-  - sudo rm /usr/local/bin/docker-compose
-  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-  - chmod +x docker-compose
-  - sudo mv docker-compose /usr/local/bin
+        #  - sudo rm /usr/local/bin/docker-compose
+        #  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+        #  - chmod +x docker-compose
+        #  - sudo mv docker-compose /usr/local/bin
+  - sudo apt-get update && sudo apt-get install -y --no-install-recommends qemu-user-static binfmt-support
+  - update-binfmts --enable qemu-arm
+  - update-binfmts --display qemu-arm
+  - mount binfmt_misc -t binfmt_misc /proc/sys/fs/binfmt_misc
+  - echo ':arm:M::\x7fELF\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x28\x00:\xff\xff\xff\xff\xff\xff\xff\x00\xff\xff\xff\xff\xff\xff\xff\xff\xfe\xff\xff\xff:/usr/bin/qemu-arm-static:' | sudo tee /proc/sys/fs/binfmt_misc/register >/dev/null
+  - cp /usr/bin/qemu-arm-static .
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
 script:

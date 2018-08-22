@@ -6,6 +6,8 @@ FROM arm32v6/php:7-apache
 
 WORKDIR /var/www/html/
 
+COPY qemu-arm-static /usr/bin/qemu-arm-static
+
 COPY ./gbridge-src/web/ /var/www/html/
 COPY ./docker-web/laravel-dotenv /var/www/html/.env
 COPY ./docker-web/apache-config.conf /etc/apache2/sites-available/apache-gbridge.conf
