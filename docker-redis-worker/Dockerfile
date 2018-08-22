@@ -2,7 +2,7 @@
 # Use build context ../ !!!!
 #
 
-FROM node:8-alpine
+FROM arm32v6/node:8-alpine
 WORKDIR /usr/src/gbridge-redis-worker
 
 COPY ./gbridge-src/redis-worker/package*.json ./
