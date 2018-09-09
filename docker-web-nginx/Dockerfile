@@ -10,4 +10,4 @@ COPY qemu-arm-static /usr/bin/qemu-arm-static
 
 COPY ./docker-web-nginx/vhost.conf /etc/nginx/conf.d/default.conf
 
-RUN chown -R www-data:www-data /var/www/
+#RUN chown -R www-data:www-data /var/www/
