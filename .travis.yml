@@ -23,7 +23,9 @@ before_install:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
 script:
-  - docker build -f ./docker-web/Dockerfile -t pkap/gbridge-web-arm32v6 .
-  - docker build -f ./docker-redis-worker/Dockerfile -t pkap/gbridge-redis-worker-arm32v6 .
-  - docker push pkap/gbridge-web-arm32v6
-  - docker push pkap/gbridge-redis-worker-arm32v6
+  - docker build -f ./docker-web-fpm/Dockerfile -t 'pkap/gbridge-web-fpm:arm32v6-latest' .
+  - docker build -f ./docker-web-nginx/Dockerfile -t 'pkap/gbridge-web-nginx:arm32v6-latest' .
+  - docker build -f ./docker-redis-worker/Dockerfile -t 'pkap/gbridge-redis-worker:arm32v6-latest' .
+  - docker push 'pkap/gbridge-web-fpm:arm32v6-latest'
+  - docker push 'pkap/gbridge-web-nginx:arm32v6-latest'
+  - docker push 'pkap/gbridge-redis-worker:arm32v6-latest'
