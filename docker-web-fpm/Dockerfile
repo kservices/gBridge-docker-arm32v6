@@ -27,4 +27,4 @@ ARG GITHUB_API_TOKEN
 RUN su -s /bin/sh -c "composer config -g github-oauth.github.com '${GITHUB_API_TOKEN}'" www-data
 RUN su -s /bin/sh -c "composer install" www-data
 RUN su -s /bin/sh -c "composer update" www-data
-RUN su -s /bin/sh -c "rm /var/www/.composer/auth.json" www-data
+RUN su -s /bin/sh -c "rm /home/www-data/.composer/auth.json" www-data
