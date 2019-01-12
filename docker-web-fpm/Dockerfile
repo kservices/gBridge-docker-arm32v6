@@ -9,7 +9,7 @@ WORKDIR /var/www
 COPY qemu-arm-static /usr/bin/qemu-arm-static
 
 RUN apk update
-RUN apk add zlib zlib-dev
+RUN apk add zlib zlib-dev libzip-dev
 RUN docker-php-ext-install zip
 RUN docker-php-ext-install pdo_mysql
 
